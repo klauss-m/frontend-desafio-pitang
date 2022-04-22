@@ -17,7 +17,9 @@
     "plugin:jest/style",
     "prettier"
   ],
-  "plugins": ["jest"],
+  "plugins": [
+    "jest"
+  ],
   "env": {
     "node": true,
     "jest": true,
@@ -30,6 +32,8 @@
   },
   "rules": {
     "no-underscore-dangle": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-uses-react": "off"
   }
 }
