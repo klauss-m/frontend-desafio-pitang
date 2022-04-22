@@ -1,0 +1,35 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "prettier"
+  ],
+  "plugins": ["jest"],
+  "env": {
+    "node": true,
+    "jest": true,
+    "browser": true
+  },
+  "settings": {
+    "jest": {
+      "version": "latest"
+    }
+  },
+  "rules": {
+    "no-underscore-dangle": "off",
+    "import/prefer-default-export": "off"
+  }
+}
