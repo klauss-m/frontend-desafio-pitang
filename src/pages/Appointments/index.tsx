@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { NotificationProps, showNotification } from '@mantine/notifications';
 import { StyledAccordion } from '../../components/Accordion';
 import { api } from '../../services/api';
 import { Appointment } from '../../types';
 import { useReload } from '../../states/reloadAppointment.state';
+import { notifications } from '../../notifications';
 
 function Appointments() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -10,11 +13,19 @@ function Appointments() {
 
   useEffect(() => {
     async function loadAppointments() {
-      try {
-        const res = await api.get<Appointment[]>('/appointments');
-        setAppointments(res.data);
-      } catch (err) {
-        console.log(err);
+      let status = 200;
+      const result = await api.get<Appointment[]>('/appointments').catch((error) => {
+        if (axios.isAxiosError(error)) {
+          status = error.response?.status || 500;
+        } else {
+          status = 500;
+        }
+        showNotification(
+          notifications.find((notif) => notif.status === status) as NotificationProps,
+        );
+      });
+      if (result?.data) {
+        setAppointments(result.data);
       }
     }
     if (reload) {

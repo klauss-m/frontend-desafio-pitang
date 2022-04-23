@@ -15,6 +15,23 @@ function StyledAccordion({ items }: StyledAccordionProps) {
 
   const dates = [...new Set(items.map((date) => date.appointmentDate.toString().split(' ')[0]))];
 
+  async function onchange(id: string, attendance: boolean) {
+    let status = 200;
+    await api
+      .patch(`/appointments/${id}`, {
+        attendance: !attendance,
+      })
+      .catch((error) => {
+        if (axios.isAxiosError(error)) {
+          status = error.response?.status! || 500;
+        } else {
+          status = 500;
+        }
+      });
+    showNotification(notifications.find((notif) => notif.status === status) as NotificationProps);
+    setReload(true);
+  }
+
   return (
     <Accordion iconSize={10}>
       {dates
@@ -49,27 +66,7 @@ function StyledAccordion({ items }: StyledAccordionProps) {
                         <Switch
                           style={{ cursor: 'pointer' }}
                           checked={app.attendance}
-                          onChange={async () => {
-                            let status = 200;
-                            await api
-                              .patch(`/appointments/${app.id}`, {
-                                attendance: !app.attendance,
-                              })
-                              .catch((error) => {
-                                if (axios.isAxiosError(error)) {
-                                  status = error.response?.status!;
-                                } else {
-                                  status = 500;
-                                }
-                              });
-                            showNotification(
-                              notifications.find(
-                                (notif) => notif.status === status,
-                              ) as NotificationProps,
-                            );
-                            setReload(true);
-                            // endLoadingScreen
-                          }}
+                          onChange={() => onchange(app.id, app.attendance)}
                         />
                       </td>
                     </tr>
