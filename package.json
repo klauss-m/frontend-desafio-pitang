@@ -10,9 +10,13 @@
     "test": "jest --passWithNoTests --coverage --config .jestrc.json"
   },
   "dependencies": {
+    "@mantine/core": "^4.1.4",
+    "@mantine/hooks": "^4.1.4",
+    "@mantine/notifications": "^4.1.4",
+    "axios": "^0.26.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.3.0"
+    "recoil": "^0.7.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
