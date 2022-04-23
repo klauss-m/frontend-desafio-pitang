@@ -1,8 +1,10 @@
 import { Accordion, Switch, Table } from '@mantine/core';
-import { showNotification } from '@mantine/notifications';
+import { NotificationProps, showNotification } from '@mantine/notifications';
+import axios from 'axios';
 import { api } from '../../services/api';
 import { useReload } from '../../states/reloadAppointment.state';
 import { Appointment } from '../../types';
+import { notifications } from '../../notifications';
 
 interface StyledAccordionProps {
   items: Appointment[];
@@ -48,25 +50,24 @@ function StyledAccordion({ items }: StyledAccordionProps) {
                           style={{ cursor: 'pointer' }}
                           checked={app.attendance}
                           onChange={async () => {
-                            const result = await api.patch(`/appointments/${app.id}`, {
-                              attendance: !app.attendance,
-                            });
-                            if (result.status === 200) {
-                              showNotification({
-                                title: 'Agendamento atualizado',
-                                message: 'Conclusão do agendamento atualizada com sucesso!',
-                                color: 'green',
+                            let status = 200;
+                            await api
+                              .patch(`/appointments/${app.id}`, {
+                                attendance: !app.attendance,
+                              })
+                              .catch((error) => {
+                                if (axios.isAxiosError(error)) {
+                                  status = error.response?.status!;
+                                } else {
+                                  status = 500;
+                                }
                               });
-                              setReload(true);
-                            }
-                            if (result.status === 404) {
-                              showNotification({
-                                title: 'Agendamento não encontrado.',
-                                message: 'Não foi possível encontrar o agendamento selecionado.',
-                                color: 'orange',
-                              });
-                              setReload(true);
-                            }
+                            showNotification(
+                              notifications.find(
+                                (notif) => notif.status === status,
+                              ) as NotificationProps,
+                            );
+                            setReload(true);
                             // endLoadingScreen
                           }}
                         />
