@@ -1,4 +1,4 @@
-import { AppShell } from '@mantine/core';
+import { AppShell, MantineProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -15,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           header={<Header />}
           footer={<Footer />}
         >
-          <Appointments />
+          <MantineProvider>
+            <Appointments />
+          </MantineProvider>
         </AppShell>
       </NotificationsProvider>
     </RecoilRoot>

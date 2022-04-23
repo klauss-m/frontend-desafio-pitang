@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <Text>Pitang Vacinação</Text>
+        <Text>Pitang Vacina</Text>
         <Group
           spacing={0}
           className={classes.links}
