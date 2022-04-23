@@ -13,7 +13,6 @@ function Appointments() {
       try {
         const res = await api.get<Appointment[]>('/appointments');
         setAppointments(res.data);
-        console.log('hue');
       } catch (err) {
         console.log(err);
       }

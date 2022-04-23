@@ -9,25 +9,22 @@ interface StyledAccordionProps {
 }
 
 function StyledAccordion({ items }: StyledAccordionProps) {
-  const datas = items.map((data) => data.appointmentDate.toString().split(' ')[0]);
   const { setReload } = useReload();
+
+  const dates = [...new Set(items.map((date) => date.appointmentDate.toString().split(' ')[0]))];
 
   return (
     <Accordion iconSize={10}>
-      {/* {items.map((item) => (
-        <Accordion.Item key={item.id}>{item.name}</Accordion.Item>
-      ))} */}
-
-      {datas
+      {dates
         .sort(
           (a, b) =>
             // @ts-ignore
             new Date(a.split('/').reverse().join('-')) - new Date(b.split('/').reverse().join('-')),
         )
-        .map((data) => (
+        .map((date) => (
           <Accordion.Item
-            key={data}
-            label={data}
+            key={date}
+            label={date}
           >
             <Table>
               <thead>
@@ -40,7 +37,7 @@ function StyledAccordion({ items }: StyledAccordionProps) {
               </thead>
               <tbody>
                 {items
-                  .filter((item) => item.appointmentDate.toString().split(' ')[0] === data)
+                  .filter((item) => item.appointmentDate.toString().split(' ')[0] === date)
                   .map((app) => (
                     <tr key={app.id}>
                       <td>{app.name}</td>
@@ -57,7 +54,7 @@ function StyledAccordion({ items }: StyledAccordionProps) {
                             if (result.status === 200) {
                               showNotification({
                                 title: 'Agendamento atualizado',
-                                message: 'Agendamento atualizado com sucesso!',
+                                message: 'Conclusão do agendamento atualizada com sucesso!',
                                 color: 'green',
                               });
                               setReload(true);
@@ -68,6 +65,7 @@ function StyledAccordion({ items }: StyledAccordionProps) {
                                 message: 'Não foi possível encontrar o agendamento selecionado.',
                                 color: 'orange',
                               });
+                              setReload(true);
                             }
                             // endLoadingScreen
                           }}
