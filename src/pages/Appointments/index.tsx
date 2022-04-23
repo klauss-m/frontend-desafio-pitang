@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { NotificationProps, showNotification } from '@mantine/notifications';
-import { StyledAccordion } from '../../components/Accordion';
+import { Accordion } from '../../components/Accordion';
 import { api } from '../../services/api';
 import { Appointment } from '../../types';
 import { useReload } from '../../states/reloadAppointment.state';
@@ -34,7 +34,7 @@ function Appointments() {
     }
   }, [reload, setReload]);
 
-  return <StyledAccordion items={appointments} />;
+  return <Accordion items={appointments} />;
 }
 
 export { Appointments };
