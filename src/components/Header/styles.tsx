@@ -1,15 +1,12 @@
 import { createStyles } from '@mantine/core';
 
-const headerStyles = createStyles((theme) => ({
+const headerStyles = createStyles({
   header: {
-    paddingTop: theme.spacing.sm,
-    backgroundColor: theme.colors.gray[0],
-    borderBottom: `1px solid ${theme.colors.gray[4]}`,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: '100%',
   },
-
-  mainSection: {
-    paddingBottom: theme.spacing.sm,
-  },
-}));
+});
 
 export { headerStyles };

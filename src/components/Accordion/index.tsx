@@ -1,4 +1,4 @@
-import { Accordion, Switch, Table } from '@mantine/core';
+import { Accordion as MantineAccordion, Switch, Table } from '@mantine/core';
 import { NotificationProps, showNotification } from '@mantine/notifications';
 import axios from 'axios';
 import { api } from '../../services/api';
@@ -10,7 +10,7 @@ interface StyledAccordionProps {
   items: Appointment[];
 }
 
-function StyledAccordion({ items }: StyledAccordionProps) {
+function Accordion({ items }: StyledAccordionProps) {
   const { setReload } = useReload();
 
   const dates = [...new Set(items.map((date) => date.appointmentDate.toString().split(' ')[0]))];
@@ -33,7 +33,7 @@ function StyledAccordion({ items }: StyledAccordionProps) {
   }
 
   return (
-    <Accordion iconSize={10}>
+    <MantineAccordion iconSize={10}>
       {dates
         .sort(
           (a, b) =>
@@ -41,7 +41,7 @@ function StyledAccordion({ items }: StyledAccordionProps) {
             new Date(a.split('/').reverse().join('-')) - new Date(b.split('/').reverse().join('-')),
         )
         .map((date) => (
-          <Accordion.Item
+          <MantineAccordion.Item
             key={date}
             label={date}
           >
@@ -73,10 +73,10 @@ function StyledAccordion({ items }: StyledAccordionProps) {
                   ))}
               </tbody>
             </Table>
-          </Accordion.Item>
+          </MantineAccordion.Item>
         ))}
-    </Accordion>
+    </MantineAccordion>
   );
 }
 
-export { StyledAccordion };
+export { Accordion };

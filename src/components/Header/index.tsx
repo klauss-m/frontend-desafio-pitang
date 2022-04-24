@@ -1,16 +1,16 @@
-import { Container, Group, Title } from '@mantine/core';
+import { Container, Group, Title, Header as MantineHeader } from '@mantine/core';
 import { headerStyles } from './styles';
 
 export function Header() {
   const { classes } = headerStyles();
 
   return (
-    <div className={classes.header}>
-      <Container className={classes.mainSection}>
+    <MantineHeader height={60}>
+      <Container className={classes.header}>
         <Group position='apart'>
           <Title>Pitang Vacina</Title>
         </Group>
       </Container>
-    </div>
+    </MantineHeader>
   );
 }
