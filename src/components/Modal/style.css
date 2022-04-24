@@ -1,0 +1,58 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.inputFormik {
+  font-size: 16px;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 2px solid;
+  border-radius: 4px;
+}
+
+.inputFormik:not(textarea) {
+  line-height: 1;
+  height: 2.25rem;
+}
+
+.errorMsg {
+  color: #cc0033;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 0;
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  font-size: 16px;
+  font-size: max(16px, 1em);
+  font-family: inherit;
+  padding: 0.25em 0.5em;
+  background-color: #fff;
+  border: 2px solid;
+  border-radius: 4px;
+}
+
+.groupDiv {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 4px;
+  padding-bottom: 10px;
+}
+
+.react-datepicker__time-list-item--disabled {
+  display: none;
+}
+
+.groupDiv label {
+  display: flex;
+  width: 15%;
+  line-height: 30px;
+  justify-content: center;
+  align-items: center;
+}

@@ -4,13 +4,14 @@ import { format, setHours, setMinutes } from 'date-fns';
 import axios from 'axios';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import * as Yup from 'yup';
-import { Modal as MantineModal } from '@mantine/core';
+import { Button, Modal as MantineModal } from '@mantine/core';
 import { Formik, Form, Field } from 'formik';
 import { NotificationProps, showNotification } from '@mantine/notifications';
 import { useModal } from '../../states/modal.state';
 import { api } from '../../services/api';
 import { notifications } from '../../notifications';
 import { useReload } from '../../states/reloadAppointment.state';
+import './style.css';
 
 registerLocale('ptBR', ptBR);
 
@@ -41,13 +42,15 @@ function Modal() {
       <Formik
         initialValues={{ name: '', dateOfBirth: new Date(), appointmentDate: new Date() }}
         validationSchema={AppointmentSchema}
+        validateOnChange={false}
+        validateOnBlur={false}
         onSubmit={async (values, actions) => {
           let status = 201;
           await api
             .post('/appointments', {
               ...values,
               dateOfBirth: format(values.dateOfBirth, 'yyyy-LL-dd'),
-              appointmentDate: format(values.appointmentDate, 'yyyy-LL-dd kk:m:ss'),
+              appointmentDate: format(values.appointmentDate, 'yyyy-LL-dd kk:mm:ss'),
             })
             .catch((error) => {
               if (axios.isAxiosError(error)) {
@@ -66,40 +69,53 @@ function Modal() {
       >
         {({ setFieldValue, values, errors }) => (
           <Form>
-            <Field
-              type='text'
-              id='name'
-              name='name'
-              placeholder='Nome'
-            />
-            {errors.name ? <p>{errors.name}</p> : null}
+            <div className='groupDiv'>
+              <Field
+                type='text'
+                id='name'
+                name='name'
+                placeholder='Nome'
+                className='inputFormik'
+              />
+              {errors.name ? <p className='errorMsg'>{errors.name}</p> : null}
+            </div>
 
-            <DatePicker
-              id='dateOfBirth'
-              name='dateOfBirth'
-              dateFormat='dd/MM/yyyy'
-              locale='ptBR'
-              selected={values.dateOfBirth}
-              onChange={(date) => setFieldValue('dateOfBirth', date)}
-            />
-            {errors.dateOfBirth ? <p>{errors.dateOfBirth as string}</p> : null}
+            <div className='groupDiv'>
+              <DatePicker
+                id='dateOfBirth'
+                name='dateOfBirth'
+                dateFormat='dd/MM/yyyy'
+                locale='ptBR'
+                className='datePickerCustom'
+                selected={values.dateOfBirth}
+                onChange={(date) => setFieldValue('dateOfBirth', date)}
+              />
+              {errors.dateOfBirth ? (
+                <p className='errorMsg'>{errors.dateOfBirth as string}</p>
+              ) : null}
+            </div>
 
-            <DatePicker
-              id='appointmentDate'
-              name='appointmentDate'
-              dateFormat='dd/MM/yyyy'
-              locale='ptBR'
-              showTimeSelect
-              timeFormat='HH:mm'
-              timeCaption='Horário'
-              minTime={setHours(setMinutes(new Date(), 0), 8)}
-              maxTime={setHours(setMinutes(new Date(), 30), 17)}
-              selected={values.appointmentDate}
-              onChange={(date) => setFieldValue('appointmentDate', date)}
-            />
-            {errors.appointmentDate ? <p>{errors.appointmentDate as string}</p> : null}
+            <div className='groupDiv'>
+              <DatePicker
+                id='appointmentDate'
+                name='appointmentDate'
+                dateFormat='dd/MM/yyyy'
+                locale='ptBR'
+                showTimeSelect
+                timeFormat='HH:mm'
+                timeCaption='Horário'
+                className='datePickerCustom'
+                minTime={setHours(setMinutes(new Date(), 0), 8)}
+                maxTime={setHours(setMinutes(new Date(), 30), 17)}
+                selected={values.appointmentDate}
+                onChange={(date) => setFieldValue('appointmentDate', date)}
+              />
+              {errors.appointmentDate ? (
+                <p className='errorMsg'>{errors.appointmentDate as string}</p>
+              ) : null}
+            </div>
 
-            <button type='submit'>Agendar</button>
+            <Button type='submit'>Agendar</Button>
           </Form>
         )}
       </Formik>

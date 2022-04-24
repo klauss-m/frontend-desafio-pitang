@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { NotificationProps, showNotification } from '@mantine/notifications';
-import { Button } from '@mantine/core';
+import { Title } from '@mantine/core';
 import { Accordion } from '../../components/Accordion';
 import { api } from '../../services/api';
 import { Appointment } from '../../types';
 import { useReload } from '../../states/reloadAppointment.state';
 import { notifications } from '../../notifications';
-import { useModal } from '../../states/modal.state';
-import { Modal } from '../../components/Modal';
 
 function Appointments() {
-  const { setOpened } = useModal();
-
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const { reload, setReload } = useReload();
 
@@ -41,9 +37,13 @@ function Appointments() {
 
   return (
     <>
-      <Button onClick={() => setOpened(true)}>Agendamento</Button>
+      <Title
+        order={3}
+        align='center'
+      >
+        Agendamentos
+      </Title>
       <Accordion items={appointments} />
-      <Modal />
     </>
   );
 }
