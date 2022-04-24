@@ -50,7 +50,7 @@ function Modal() {
             .post('/appointments', {
               ...values,
               dateOfBirth: format(values.dateOfBirth, 'yyyy-LL-dd'),
-              appointmentDate: format(values.appointmentDate, 'yyyy-LL-dd kk:m:ss'),
+              appointmentDate: format(values.appointmentDate, 'yyyy-LL-dd kk:mm:ss'),
             })
             .catch((error) => {
               if (axios.isAxiosError(error)) {
