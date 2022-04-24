@@ -5,3 +5,7 @@ export interface Appointment {
   appointmentDate: Date;
   attendance: boolean;
 }
+
+export interface AccordionProps {
+  items: Appointment[];
+}

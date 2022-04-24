@@ -7,6 +7,7 @@ import { api } from '../../services/api';
 import { Appointment } from '../../types';
 import { useReload } from '../../states/reloadAppointment.state';
 import { notifications } from '../../notifications';
+import { Modal } from '../../components/Modal';
 
 function Appointments() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -44,6 +45,7 @@ function Appointments() {
         Agendamentos
       </Title>
       <Accordion items={appointments} />
+      <Modal />
     </>
   );
 }
