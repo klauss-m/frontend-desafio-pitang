@@ -6,11 +6,11 @@ import { useReload } from '../../states/reloadAppointment.state';
 import { Appointment } from '../../types';
 import { notifications } from '../../notifications';
 
-interface StyledAccordionProps {
+interface AccordionProps {
   items: Appointment[];
 }
 
-function Accordion({ items }: StyledAccordionProps) {
+function Accordion({ items }: AccordionProps) {
   const { setReload } = useReload();
 
   const dates = [...new Set(items.map((date) => date.appointmentDate.toString().split(' ')[0]))];
