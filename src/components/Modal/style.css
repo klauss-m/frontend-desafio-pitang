@@ -36,13 +36,15 @@
   background-color: #fff;
   border: 2px solid;
   border-radius: 4px;
+  line-height: 1;
+  height: 2.25rem;
 }
 
 .groupDiv {
   display: flex;
   flex-wrap: wrap;
   margin-top: 4px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .react-datepicker__time-list-item--disabled {
@@ -51,8 +53,6 @@
 
 .groupDiv label {
   display: flex;
-  width: 15%;
   line-height: 30px;
-  justify-content: center;
-  align-items: center;
+  font-size: small;
 }

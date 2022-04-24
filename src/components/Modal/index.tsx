@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import 'react-datepicker/dist/react-datepicker.css';
 import ptBR from 'date-fns/locale/pt-BR';
 import { format, setHours, setMinutes } from 'date-fns';
@@ -40,7 +41,11 @@ function Modal() {
       onClose={() => setOpened(false)}
     >
       <Formik
-        initialValues={{ name: '', dateOfBirth: new Date(), appointmentDate: new Date() }}
+        initialValues={{
+          name: '',
+          dateOfBirth: new Date(),
+          appointmentDate: new Date().setHours(8, 0),
+        }}
         validationSchema={AppointmentSchema}
         validateOnChange={false}
         validateOnBlur={false}
@@ -81,6 +86,7 @@ function Modal() {
             </div>
 
             <div className='groupDiv'>
+              <label htmlFor='dateOfBirth'>Data de Nascimento</label>
               <DatePicker
                 id='dateOfBirth'
                 name='dateOfBirth'
@@ -96,13 +102,14 @@ function Modal() {
             </div>
 
             <div className='groupDiv'>
+              <label htmlFor='appointmentDate'>Data de Agendamento</label>
               <DatePicker
                 id='appointmentDate'
                 name='appointmentDate'
-                dateFormat='dd/MM/yyyy'
+                dateFormat='Pp'
                 locale='ptBR'
                 showTimeSelect
-                timeFormat='HH:mm'
+                timeFormat='p'
                 timeCaption='Horário'
                 className='datePickerCustom'
                 minTime={setHours(setMinutes(new Date(), 0), 8)}
