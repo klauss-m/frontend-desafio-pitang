@@ -3,12 +3,8 @@ import { NotificationProps, showNotification } from '@mantine/notifications';
 import axios from 'axios';
 import { api } from '../../services/api';
 import { useReload } from '../../states/reloadAppointment.state';
-import { Appointment } from '../../types';
+import { AccordionProps } from '../../types';
 import { notifications } from '../../notifications';
-
-interface AccordionProps {
-  items: Appointment[];
-}
 
 function Accordion({ items }: AccordionProps) {
   const { setReload } = useReload();
@@ -33,7 +29,11 @@ function Accordion({ items }: AccordionProps) {
   }
 
   return (
-    <MantineAccordion iconSize={10}>
+    <MantineAccordion
+      iconSize={10}
+      id='accordion'
+      data-testid='accordion'
+    >
       {dates
         .sort(
           (a, b) =>

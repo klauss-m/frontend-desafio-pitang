@@ -44,7 +44,7 @@ function Modal() {
         initialValues={{
           name: '',
           dateOfBirth: new Date(),
-          appointmentDate: new Date().setHours(8, 0),
+          appointmentDate: new Date(),
         }}
         validationSchema={AppointmentSchema}
         validateOnChange={false}
@@ -129,4 +129,5 @@ function Modal() {
     </MantineModal>
   );
 }
+
 export { Modal };

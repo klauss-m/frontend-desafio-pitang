@@ -20,7 +20,10 @@
   "plugins": [
     "jest"
   ],
-  "ignorePatterns": "vite.config.ts",
+  "ignorePatterns": [
+    "vite.config.ts",
+    "vitest.config.ts"
+  ],
   "env": {
     "node": true,
     "jest": true,
