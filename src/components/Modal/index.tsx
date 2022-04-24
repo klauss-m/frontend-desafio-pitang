@@ -42,6 +42,8 @@ function Modal() {
       <Formik
         initialValues={{ name: '', dateOfBirth: new Date(), appointmentDate: new Date() }}
         validationSchema={AppointmentSchema}
+        validateOnChange={false}
+        validateOnBlur={false}
         onSubmit={async (values, actions) => {
           let status = 201;
           await api

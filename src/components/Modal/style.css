@@ -45,6 +45,10 @@
   padding-bottom: 10px;
 }
 
+.react-datepicker__time-list-item--disabled {
+  display: none;
+}
+
 .groupDiv label {
   display: flex;
   width: 15%;

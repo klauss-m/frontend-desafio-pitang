@@ -1,4 +1,4 @@
-import { Text, Container, Group, ActionIcon } from '@mantine/core';
+import { Title, Container, Group, ActionIcon } from '@mantine/core';
 import { BrandGithub } from 'tabler-icons-react';
 import { footerStyles } from './styles';
 
@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <div className={classes.footer}>
       <Container className={classes.inner}>
-        <Text>Pitang Vacina</Text>
+        <Title order={5}>Pitang Vacina</Title>
         <Group
           spacing={0}
           className={classes.links}
