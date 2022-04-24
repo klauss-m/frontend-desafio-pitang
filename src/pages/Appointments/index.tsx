@@ -41,7 +41,7 @@ function Appointments() {
 
   return (
     <>
-      <Button onClick={() => setOpened(true)}>ModalTest</Button>
+      <Button onClick={() => setOpened(true)}>Agendamento</Button>
       <Accordion items={appointments} />
       <Modal />
     </>

@@ -10,6 +10,7 @@ import { NotificationProps, showNotification } from '@mantine/notifications';
 import { useModal } from '../../states/modal.state';
 import { api } from '../../services/api';
 import { notifications } from '../../notifications';
+import { useReload } from '../../states/reloadAppointment.state';
 
 registerLocale('ptBR', ptBR);
 
@@ -29,6 +30,7 @@ const AppointmentSchema = Yup.object().shape({
 
 function Modal() {
   const { opened, setOpened } = useModal();
+  const { setReload } = useReload();
 
   return (
     <MantineModal
@@ -53,12 +55,13 @@ function Modal() {
               } else {
                 status = 500;
               }
-              showNotification(
-                notifications.find((notif) => notif.status === status) as NotificationProps,
-              );
             });
+          showNotification(
+            notifications.find((notif) => notif.status === status) as NotificationProps,
+          );
           actions.setSubmitting(false);
           setOpened(false);
+          setReload(true);
         }}
       >
         {({ setFieldValue, values, errors }) => (
