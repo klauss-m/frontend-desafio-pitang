@@ -25,5 +25,33 @@ e qual a conclusão do atendimento(se foi realizado).
 ## Regras de Execução
 
 - Portal escrito em React, utilizar o react-datepicker para o gerenciamento das datas.
+- Construir uma API em Node para receber os dados do portal.
 - Axios como cliente http.
 - Utilizar o Formik para a validação dos dados na view.
+- IDE fica a sua escolha.
+
+## Instalação
+
+```bash
+# clonar o repositório
+https://github.com/klauss-m/frontend-desafio-pitang.git
+
+#instalar dependências
+yarn install ou npm install
+```
+
+## Uso
+
+```bash
+#Inicializar o server dev
+yarn dev ou npm dev
+
+#realização de testes
+yarn test ou npm test
+```
+
+## Deploy
+
+Deploy efetuado no Heroku utilizando github actions.
+
+<https://aesthetic-bunny-50066b.netlify.app/>
