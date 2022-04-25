@@ -62,6 +62,6 @@ yarn test ou npm test
 
 ## Deploy
 
-Deploy efetuado no Heroku utilizando github actions.
+Deploy efetuado no Neflify utilizando github actions.
 
 <https://aesthetic-bunny-50066b.netlify.app/>
